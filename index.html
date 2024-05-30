@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stone Paper Scissor</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <header>Stone Paper Scissor</header>
+    <div class="start-div">
+      <p class="start-text">Click below button to start!</p>
+      <button class="start-btn" onclick="startGame()">Start Game</button>
+    </div>
+    <div class="selections-main">
+      <div class="computer-player-div">
+        <div class="computer-selection-div hidden">
+          <p class="text-header">Computer's Selection</p>
+          <img class="comp-select-img" src="" alt="Not Selected Yet" />
+        </div>
+        <div class="comp-score-div hidden">
+          <p class="text-header">Computer Score</p>
+          <p class="comp-score"></p>
+        </div>
+      </div>
+      <div class="human-player-div">
+        <div class="human-selection-div hidden">
+          <p class="text-header">Your Selection</p>
+          <img class="human-select-img" src="" alt="Not Selected Yet" />
+        </div>
+        <div class="human-score-div hidden">
+          <p class="text-header">Your Score</p>
+          <p class="human-score"></p>
+        </div>
+      </div>
+    </div>
+    <div class="selection-btn-div hidden">
+      <button class="selection-btn" value="1">Stone</button>
+      <button class="selection-btn" value="2">Paper</button>
+      <button class="selection-btn" value="3">Scissor</button>
+    </div>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
