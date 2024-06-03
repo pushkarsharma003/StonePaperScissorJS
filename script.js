@@ -10,9 +10,14 @@ const humanScoreText = document.querySelector('.human-score');
 const startDiv = document.querySelector('.start-div');
 const compScoreDiv = document.querySelector('.comp-score-div');
 const humanScoreDiv = document.querySelector('.human-score-div');
+const gameOverScreen = document.querySelector('.overlay');
+const gameOverText = document.querySelector('.game-over-notify');
+const resetGame = document.querySelector('.reset');
 
 let compScore = 0;
 let humanScore = 0;
+const winScore = 10;
+let winner = '';
 function getRandom() {
   return Math.trunc(Math.random() * 3 + 1);
 }
@@ -29,7 +34,9 @@ function startGame() {
       const setImg1_link = `images/${computerSelection}.jpeg`;
       const setImg2_link = `images/${humanSelection}.jpeg`;
       compSelectImg.setAttribute('src', setImg1_link);
+      compSelectImg.setAttribute('alt', 'Selected');
       humanSelectImg.setAttribute('src', setImg2_link);
+      humanSelectImg.setAttribute('alt', 'Selected');
       compScoreDiv.classList.remove('hidden');
       humanScoreDiv.classList.remove('hidden');
 
@@ -58,14 +65,37 @@ function startGame() {
       }
 
       console.log(
-        `computer score: ${compScore} | | player score: ${humanScore} `
+        `computer score: ${compScore} | | player score: ${humanScore}`
       );
 
       compScoreText.textContent = compScore;
       humanScoreText.textContent = humanScore;
 
-      if (compScore === 10) console.log('computer wins!');
-      else if (humanScore === 10) console.log('you wins!');
+      if (compScore === winScore) {
+        winner = 'Computer';
+        setWinnerVisuals();
+      } else if (humanScore === winScore) {
+        winner = 'You';
+        setWinnerVisuals();
+      }
     });
   });
+}
+
+function setWinnerVisuals() {
+  resetGame.addEventListener('click', () => {
+    gameOverScreen.classList.add('hidden');
+    compScore = 0;
+    humanScore = 0;
+    compScoreText.textContent = humanScore;
+    humanScoreText.textContent = compScore;
+    compSelectImg.setAttribute('src', '');
+    humanSelectImg.setAttribute('src', '');
+    compSelectImg.setAttribute('alt', 'Not Selected Yet');
+    humanSelectImg.setAttribute('alt', 'Not Selected Yet');
+  });
+  gameOverScreen.classList.remove('hidden');
+  gameOverText.textContent = ` ${
+    winner === 'You' ? 'You win.' : 'You lost. Better luck next time.'
+  }`;
 }
